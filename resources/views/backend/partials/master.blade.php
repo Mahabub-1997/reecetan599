@@ -60,11 +60,8 @@
     <!-- /.control-sidebar -->
     <!-- Main Footer -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2019-2025 <a href="">Blogs</a>.</strong>
-        All rights reserved At Amadr Dokan.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.2.0
-        </div>
+        <strong>Copyright &copy; 2019-2025 <a href="">EduHTrainerCo</a>.</strong>
+        All rights reserved At EduHTrainerCo.
     </footer>
 </div>
 <!-- ./wrapper -->

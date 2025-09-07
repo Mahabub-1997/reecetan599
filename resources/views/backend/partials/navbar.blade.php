@@ -41,7 +41,7 @@
         </li>
         <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="height:1.2rem;margin-bottom: 6px">
+                <span class="ml-1">{{ Auth::user()->name }} (ID: {{ Auth::user()->id }})</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item text-primary" href="{{route('profile.edit')}}">
@@ -52,10 +52,6 @@
                     <i class="fa-solid fa-key me-2" style="color:#ffc107"></i>
                     Change Password
                 </a>
-                {{--                <a href=" {{ url('admin/logout') }} " class="dropdown-item">--}}
-                {{--                    <i class="ti-power-off text-primary"></i>--}}
-                {{--                    Logout--}}
-                {{--                </a>--}}
                 <a class="dropdown-item text-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                     <i class="fa-solid fa-lock me-2" style="color:#ffc107"></i> {{ __('Logout') }}

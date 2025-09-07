@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Backend\CMS\AboutUs;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
+use App\Models\OnlineCourse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,8 @@ class AboutUsController extends Controller
     public function index()
     {
         $aboutUsRecords = AboutUs::latest()->paginate(10);
-        return view('backend.layouts.about_us.list', compact('aboutUsRecords'));
+        $totalCourses = OnlineCourse::count();
+        return view('backend.layouts.about_us.list', compact('aboutUsRecords','totalCourses'));
     }
     public function create()
     {

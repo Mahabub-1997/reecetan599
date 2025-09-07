@@ -39,15 +39,26 @@
                 <!-- Info boxes -->
                 <div class="row">
                     <!-- Total Courses Card -->
+{{--                    <div class="col-12 col-sm-6 col-md-4">--}}
+{{--                        <div class="info-box mb-3 d-flex justify-content-between align-items-center">--}}
+{{--                            <div class="info-box-content">--}}
+{{--                                <span class="info-box-text fw-bold" style="font-size: 1.5rem;">Total Courses</span>--}}
+{{--                                <span class="info-box-number text-primary" style="font-size: 2rem;">120</span>--}}
+{{--                            </div>--}}
+{{--                            <span class="info-box-icon bg-white elevation-1 text-dark">--}}
+{{--                                <i class="fas fa-graduation-cap" style="font-size: 2rem;"></i>--}}
+{{--                            </span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="col-12 col-sm-6 col-md-4">
                         <div class="info-box mb-3 d-flex justify-content-between align-items-center">
                             <div class="info-box-content">
                                 <span class="info-box-text fw-bold" style="font-size: 1.5rem;">Total Courses</span>
-                                <span class="info-box-number text-primary" style="font-size: 2rem;">120</span>
+                                <span class="info-box-number text-primary" style="font-size: 2rem;">{{ $totalCourses }}</span>
                             </div>
                             <span class="info-box-icon bg-white elevation-1 text-dark">
-                                <i class="fas fa-graduation-cap" style="font-size: 2rem;"></i>
-                            </span>
+            <i class="fas fa-graduation-cap" style="font-size: 2rem;"></i>
+        </span>
                         </div>
                     </div>
 
