@@ -49,7 +49,7 @@ class EnrollmentController extends Controller
 
         // Here you can redirect to your payment gateway page
         // Example: return redirect()->route('payment.page', $course_id);
-        return view('payments.checkout', compact('course'));
+        return view('backend.layouts.payments.checkout', compact('course'));
     }
 
     // 3️⃣ Handle successful payment callback
@@ -120,5 +120,4 @@ class EnrollmentController extends Controller
 
         return redirect()->back()->with('message', 'Enrollment status updated successfully!');
     }
-
 }

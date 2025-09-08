@@ -1,48 +1,4 @@
 
-{{--@extends('backend.partials.master')--}}
-
-{{--@section('content')--}}
-{{--    <div class="container py-5">--}}
-{{--        <h2>--}}
-{{--            @if($course)--}}
-{{--                Users Enrolled in: {{ $enrollment->course->title }}--}}
-{{--            @else--}}
-{{--                All Enrollments--}}
-{{--            @endif--}}
-{{--        </h2>--}}
-
-{{--        <table class="table table-bordered table-striped mt-4">--}}
-{{--            <thead>--}}
-{{--            <tr>--}}
-{{--                <th>#</th>--}}
-{{--                <th>User Name</th>--}}
-{{--                <th>User Email</th>--}}
-{{--                @if(!$course)--}}
-{{--                    <th>Course Title</th>--}}
-{{--                @endif--}}
-{{--                <th>Status</th>--}}
-{{--                <th>Enrolled At</th>--}}
-{{--            </tr>--}}
-{{--            </thead>--}}
-{{--            <tbody>--}}
-{{--            @foreach($enrollments as $enrollment)--}}
-{{--                <tr>--}}
-{{--                    <td>{{ $loop->iteration }}</td>--}}
-{{--                    <td>{{ $enrollment->user->name ?? 'N/A' }}</td>--}}
-{{--                    <td>{{ $enrollment->user->email ?? 'N/A' }}</td>--}}
-{{--                    @if(!$course)--}}
-{{--                        <td>{{ $enrollment->course->title ?? 'N/A' }}</td>--}}
-{{--                    @endif--}}
-{{--                    <td>{{ ucfirst($enrollment->status) }}</td>--}}
-{{--                    <td>{{ $enrollment->enrolled_at ?? $enrollment->created_at }}</td>--}}
-{{--                </tr>--}}
-{{--            @endforeach--}}
-
-
-{{--            </tbody>--}}
-{{--        </table>--}}
-{{--    </div>--}}
-{{--@endsection--}}
 @extends('backend.partials.master')
 
 @section('content')
@@ -146,7 +102,6 @@
                                 @if(!(isset($course) && $course))
                                     <td>{{ $enrollment->course->title ?? 'N/A' }}</td>
                                 @endif
-{{--                                <td>{{ ucfirst($enrollment->status ?? 'N/A') }}</td>--}}
                                 <td>
                                     <form action="{{ route('enrollments.update-status', $enrollment->id) }}" method="POST" class="d-inline">
                                         @csrf

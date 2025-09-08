@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthenticatedSessionController extends Controller
 {
 
-    public function store(Request $request)
+    public function login(Request $request)
     {
         $request->validate([
             'email' => 'required|email',

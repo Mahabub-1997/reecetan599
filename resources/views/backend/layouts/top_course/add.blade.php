@@ -3,7 +3,7 @@
     <div class="content-wrapper">
         <div class="col-md-7 py-5 mx-auto">
             <div class="card card-primary card-outline">
-                <div class="card-header text-center">{{ __('Add Product Form') }}</div>
+                <div class="card-header text-center">{{ __('Add Top Course') }}</div>
                 <div class="card-body">
 
                     {{-- Show Validation Errors --}}

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes
 Route::post('/register', [RegisteredUserController::class, 'store']);
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/login', [AuthenticatedSessionController::class, 'login']);
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendOtp']);
 Route::post('/reset-password', [ResetPasswordController::class, 'verifyOtp']);
 Route::post('/verify-otp', [OtpVerificationController::class, 'verify']);

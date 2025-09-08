@@ -4,7 +4,7 @@
     <div class="content-wrapper">
         <div class="col-md-8 py-5 mx-auto">
             <div class="card card-primary card-outline">
-                <div class="card-header text-center">{{ __('Edit Course Form') }}</div>
+                <div class="card-header text-center">{{ __('Edit Course') }}</div>
                 <div class="card-body">
 
                     {{-- Show Validation Errors --}}
