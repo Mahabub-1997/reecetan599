@@ -165,6 +165,26 @@
                     </a>
                 </li>
 
+
+                <!-- Student Enrollment -->
+
+                <li class="nav-item">
+                    <a href="{{route('enrollments.index')}}" class="nav-link {{ request()->routeIs('courses.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>Enrollments</p>
+                    </a>
+                </li>
+
+
+{{--                <li class="nav-item {{ request()->routeIs('product.index') || request()->is('admin/product/*') ? 'menu-open' : '' }}">--}}
+{{--                    <a href="{{route('courses.enrolled-users', $course->id) }}" class="nav-link {{ request()->routeIs('student.review.index') || request()->is('admin/student-review/*') ? 'active' : '' }}">--}}
+{{--                        <i class="nav-icon fas fa-star"></i>--}}
+{{--                        <p>--}}
+{{--                            Enrollments--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+
                 <!-- Earning -->
                 <li class="nav-item {{ request()->routeIs('order.index') || request()->is('admin/order/*') ? 'menu-open' : '' }}">
                     <a href="" class="nav-link {{ request()->routeIs('earning.index') || request()->is('admin/earning/*') ? 'active' : '' }}">

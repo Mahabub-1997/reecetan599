@@ -76,6 +76,16 @@
                                 <input type="file" required class="form-control" name="image" style="height:45px; padding:6px;">
                             </div>
                         </div>
+                        {{-- Course Type --}}
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">Course Type</label>
+                            <div class="col-md-9">
+                                <select name="course_type" class="form-control">
+                                    <option value="free" {{ old('course_type') == 'free' ? 'selected' : '' }}>Free</option>
+                                    <option value="paid" {{ old('course_type') == 'paid' ? 'selected' : '' }}>Paid</option>
+                                </select>
+                            </div>
+                        </div>
 
 {{--                        --}}{{-- User --}}
                         <div class="form-group row">

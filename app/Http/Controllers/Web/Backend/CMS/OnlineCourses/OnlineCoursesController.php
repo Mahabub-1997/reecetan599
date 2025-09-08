@@ -40,6 +40,7 @@ class OnlineCoursesController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,png',
             'rating_id' => 'nullable|integer',
             'category_id' => 'required|exists:categories,id',
+            'course_type' => 'nullable|in:free,paid', // validate if passed from form
         ]);
 
         $data = $request->only([
@@ -57,7 +58,15 @@ class OnlineCoursesController extends Controller
         // Set user and creator
         $data['user_id'] = Auth::id();       // logged-in user as course owner
         $data['created_by'] = Auth::id();    // creator
-        $data['updated_by'] = Auth::id(); // fix for NOT NULL constraint
+        $data['updated_by'] = Auth::id();    // fix for NOT NULL constraint
+
+        // Determine course type based on price
+        if (isset($data['price']) && $data['price'] > 0) {
+            $data['course_type'] = 'paid';
+        } else {
+            $data['course_type'] = 'free';
+            $data['price'] = 0; // ensure price is 0 for free courses
+        }
 
         OnlineCourse::create($data);
 
@@ -84,6 +93,7 @@ class OnlineCoursesController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png', // optional on update
             'rating_id' => 'nullable|integer',
             'category_id' => 'required|exists:categories,id',
+            'course_type' => 'nullable|in:free,paid', // optional from form
         ]);
 
         $data = $request->only([
@@ -105,10 +115,19 @@ class OnlineCoursesController extends Controller
         // Set updated_by
         $data['updated_by'] = Auth::id();
 
+        // Determine course type based on price
+        if (isset($data['price']) && $data['price'] > 0) {
+            $data['course_type'] = 'paid';
+        } else {
+            $data['course_type'] = 'free';
+            $data['price'] = 0; // ensure price is 0 for free courses
+        }
+
         $online_course->update($data);
 
         return redirect()->route('online-courses.index')->with('message', 'Course updated successfully!');
     }
+
     public function destroy(OnlineCourse $online_course)
     {
         // Delete image file if exists

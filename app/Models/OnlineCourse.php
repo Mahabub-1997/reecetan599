@@ -18,6 +18,7 @@ class OnlineCourse extends Model
         'language',
         'image',
         'user_id',
+        'course_type',
         'rating_id',
         'category_id',
         'created_by',
@@ -48,5 +49,18 @@ class OnlineCourse extends Model
     public function updater()
     {
         return $this->belongsTo(User::class, 'updated_by');
+    }
+    // One course has many enrollments
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class, 'course_id');
+    }
+
+    // Users enrolled in this course
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'enrollments')
+            ->withPivot('status', 'enrolled_at')
+            ->withTimestamps();
     }
 }

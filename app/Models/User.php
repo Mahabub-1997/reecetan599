@@ -69,8 +69,23 @@ class User extends Authenticatable
     }
 
     // Courses owned by this user
-    public function courses()
+    public function Courses()
     {
         return $this->hasMany(OnlineCourse::class, 'user_id');
     }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
+
+    // Courses the user has **enrolled in** (many-to-many)
+    public function enrolledCourses()
+    {
+        return $this->belongsToMany(OnlineCourse::class, 'enrollments')
+            ->withPivot('status', 'enrolled_at')
+            ->withTimestamps();
+    }
+
 }

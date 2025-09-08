@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\Backend\CMS\AboutUs\AboutUsController;
 use App\Http\Controllers\Web\Backend\CMS\Category\CategoryController;
 use App\Http\Controllers\Web\Backend\CMS\ContactUs\ContactUsController;
+use App\Http\Controllers\Web\Backend\CMS\Enrollment\EnrollmentController;
 use App\Http\Controllers\Web\Backend\CMS\OnlineCourses\OnlineCoursesController;
 use App\Http\Controllers\Web\Backend\CMS\Subscription\SubscriptionController;
 use App\Http\Controllers\Web\Backend\CMS\TopCourse\TopCourseController;
@@ -19,10 +20,23 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+    // Profile & Dashboard routes
     Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Enrollment & Course routes
+    Route::post('courses/{id}/enroll', [EnrollmentController::class, 'enroll'])->name('courses.enroll');
+    Route::get('courses/{id}/pay', [EnrollmentController::class, 'pay'])->name('courses.pay');
+    Route::get('courses/{id}/payment-success', [EnrollmentController::class, 'paymentSuccess'])->name('courses.payment.success');
+    Route::get('my-courses', [EnrollmentController::class, 'myCourses'])->name('courses.my');
+
+    // Enrolled users route
+    Route::get('courses/{id}/enrolled-users', [EnrollmentController::class, 'courseEnrolledUsers'])->name('courses.enrolled-users');
+    Route::get('admin/enrollments', [EnrollmentController::class, 'indexEnrollments'])->name('enrollments.index');
+    Route::patch('enrollments/{id}/update-status', [EnrollmentController::class, 'updateStatus'])->name('enrollments.update-status');
 });
 
 Route::resource('about-us', AboutUsController::class);

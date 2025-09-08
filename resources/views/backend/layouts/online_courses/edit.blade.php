@@ -1,4 +1,5 @@
 @extends('backend.partials.master')
+
 @section('content')
     <div class="content-wrapper">
         <div class="col-md-8 py-5 mx-auto">
@@ -18,7 +19,7 @@
                     @endif
 
                     {{-- Form --}}
-                    <form action="{{ route('online-courses.update', $online_course->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('online-courses.update', $online_course->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -46,6 +47,17 @@
                             </div>
                         </div>
 
+                        {{-- Course Type (Display Only) --}}
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">Course Type</label>
+                            <div class="col-md-9">
+                                <select name="course_type" class="form-control" required>
+                                    <option value="free" {{ old('course_type', $online_course->course_type) == 'free' ? 'selected' : '' }}>Free</option>
+                                    <option value="paid" {{ old('course_type', $online_course->course_type) == 'paid' ? 'selected' : '' }}>Paid</option>
+                                </select>
+                            </div>
+                        </div>
+
                         {{-- Level --}}
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">Level</label>
@@ -70,23 +82,14 @@
                             </div>
                         </div>
 
-                        {{-- Existing Image Preview --}}
-                        <div class="form-group row">
-                            <label class="col-md-3 col-form-label">Current Image</label>
-                            <div class="col-md-9">
-                                @if($online_course->image)
-                                    <img src="{{ asset('uploads/courses/' . $online_course->image) }}" width="100" alt="Course Image">
-                                @else
-                                    <p>No image uploaded.</p>
-                                @endif
-                            </div>
-                        </div>
-
                         {{-- Image --}}
                         <div class="form-group row">
-                            <label class="col-md-3 col-form-label">Change Image</label>
+                            <label class="col-md-3 col-form-label">Image</label>
                             <div class="col-md-9">
                                 <input type="file" class="form-control" name="image" style="height:45px; padding:6px;">
+                                @if($online_course->image)
+                                    <img src="{{ asset('uploads/courses/' . $online_course->image) }}" width="100" class="mt-2" alt="Course Image">
+                                @endif
                             </div>
                         </div>
 
@@ -97,7 +100,7 @@
                                 <select name="user_id" class="form-control">
                                     <option value="">-- Select User --</option>
                                     @foreach($users as $user)
-                                        <option value="{{ $user->id }}" {{ (old('user_id', $online_course->user_id) == $user->id) ? 'selected' : '' }}>
+                                        <option value="{{ $user->id }}" {{ old('user_id', $online_course->user_id) == $user->id ? 'selected' : '' }}>
                                             {{ $user->name }}
                                         </option>
                                     @endforeach
@@ -120,7 +123,7 @@
                                 <select name="category_id" class="form-control">
                                     <option value="">-- Select Category --</option>
                                     @foreach($categories as $cat)
-                                        <option value="{{ $cat->id }}" {{ (old('category_id', $online_course->category_id) == $cat->id) ? 'selected' : '' }}>
+                                        <option value="{{ $cat->id }}" {{ old('category_id', $online_course->category_id) == $cat->id ? 'selected' : '' }}>
                                             {{ $cat->name }}
                                         </option>
                                     @endforeach
@@ -128,7 +131,7 @@
                             </div>
                         </div>
 
-                        {{-- Submit Button --}}
+                        {{-- Submit --}}
                         <div class="form-group row">
                             <div class="col-md-9 offset-md-3">
                                 <input type="submit" class="btn btn-primary" value="Update Course">
