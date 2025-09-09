@@ -4,6 +4,8 @@ use App\Http\Controllers\Web\Backend\CMS\AboutUs\AboutUsController;
 use App\Http\Controllers\Web\Backend\CMS\Category\CategoryController;
 use App\Http\Controllers\Web\Backend\CMS\ContactUs\ContactUsController;
 use App\Http\Controllers\Web\Backend\CMS\Enrollment\EnrollmentController;
+use App\Http\Controllers\Web\Backend\CMS\HeroImage\HeroImageController;
+use App\Http\Controllers\Web\Backend\CMS\HeroSection\HeroSectionController;
 use App\Http\Controllers\Web\Backend\CMS\OnlineCourses\OnlineCoursesController;
 use App\Http\Controllers\Web\Backend\CMS\Subscription\SubscriptionController;
 use App\Http\Controllers\Web\Backend\CMS\TopCourse\TopCourseController;
@@ -45,6 +47,8 @@ Route::resource('top-course', TopCourseController::class);
 Route::resource('online-courses', OnlineCoursesController::class);
 Route::resource('subscriptions', SubscriptionController::class);
 Route::resource('contactus', ContactUsController::class);
+Route::resource('hero-images', HeroImageController::class);
+Route::resource('hero-sections', HeroSectionController::class);
 
 
 

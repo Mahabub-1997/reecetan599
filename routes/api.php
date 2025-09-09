@@ -9,6 +9,8 @@ use App\Http\Controllers\API\Auth\ResetPasswordController;
 use App\Http\Controllers\API\CMS\AboutUsController;
 use App\Http\Controllers\API\CMS\CategoryController;
 use App\Http\Controllers\API\CMS\ContactUsController;
+use App\Http\Controllers\API\CMS\HeroImageController;
+use App\Http\Controllers\Api\CMS\HeroSectionController;
 use App\Http\Controllers\API\CMS\OnlineCourseController;
 use App\Http\Controllers\API\CMS\RatingController;
 use App\Http\Controllers\API\CMS\SubscriptionController;
@@ -24,6 +26,9 @@ Route::post('/login', [AuthenticatedSessionController::class, 'login']);
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendOtp']);
 Route::post('/reset-password', [ResetPasswordController::class, 'verifyOtp']);
 Route::post('/verify-otp', [OtpVerificationController::class, 'verify']);
+Route::post('/reset-verify-otp', [ForgotPasswordController::class, 'verifyOtpRegister']);
+
+
 
 // Protected routes (require authentication)
 Route::middleware('auth:sanctum')->group(function () {
@@ -54,4 +59,7 @@ Route::apiResource('online-courses', OnlineCourseController::class);
 Route::apiResource('about-us', AboutUsController::class);
 Route::apiResource('subscriptions', SubscriptionController::class);
 Route::apiResource('contact-us', ContactUsController::class);
+Route::apiResource('hero-images', HeroImageController::class);
+Route::apiResource('hero-sections', HeroSectionController::class);
+Route::get('hero-sections/search/courses', [HeroSectionController::class, 'searchCourses']);
 

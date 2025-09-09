@@ -98,6 +98,13 @@
                                 <p>Subscription</p>
                             </a>
                         </li>
+                        <!-- Sub-menu: Hero Images -->
+                        <li class="nav-item">
+                            <a href="{{ route('hero-images.index') }}" class="nav-link {{ request()->routeIs('hero-images.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Hero Images</p>
+                            </a>
+                        </li>
                         <!-- Sub-menu: Contact Us -->
                         <li class="nav-item">
                             <a href="{{ route('contactus.index') }}" class="nav-link {{ request()->routeIs('contact-us.index') ? 'active' : '' }}">
