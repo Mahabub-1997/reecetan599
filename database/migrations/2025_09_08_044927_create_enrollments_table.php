@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('course_id'); // references online_courses.id
 
             // Enrollment info
-            $table->string('status', ['pending', 'success', 'failed'])->default('pending');
+            $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
             $table->timestamp('enrolled_at')->nullable();
             $table->timestamps();
         });

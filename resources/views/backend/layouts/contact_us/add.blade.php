@@ -19,7 +19,7 @@
                     @endif
 
                     {{-- Form --}}
-                    <form action="{{ route('contactus.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('contactus.store') }}" method="post">
                         @csrf
 
                         {{-- Name --}}
@@ -38,35 +38,11 @@
                             </div>
                         </div>
 
-                        {{-- Contact Number --}}
-                        <div class="form-group row">
-                            <label class="col-md-3 col-form-label">Contact Number</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="contact_number" value="{{ old('contact_number') }}" placeholder="Enter contact number">
-                            </div>
-                        </div>
-
-                        {{-- Address --}}
-                        <div class="form-group row">
-                            <label class="col-md-3 col-form-label">Address</label>
-                            <div class="col-md-9">
-                                <textarea class="form-control" name="address" rows="2" placeholder="Enter address">{{ old('address') }}</textarea>
-                            </div>
-                        </div>
-
                         {{-- Description --}}
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">Description</label>
                             <div class="col-md-9">
                                 <textarea class="form-control" name="description" rows="4" placeholder="Enter description...">{{ old('description') }}</textarea>
-                            </div>
-                        </div>
-
-                        {{-- Image --}}
-                        <div class="form-group row">
-                            <label class="col-md-3 col-form-label">Image</label>
-                            <div class="col-md-9">
-                                <input type="file" class="form-control" name="image" accept="image/*" style="height:45px; padding:6px;">
                             </div>
                         </div>
 
@@ -83,4 +59,3 @@
         </div>
     </div>
 @endsection
-

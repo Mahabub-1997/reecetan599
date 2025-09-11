@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('contact_number')->nullable();
-            $table->string('image')->nullable(); // stores path like "contact_us/abc.jpg"
-            $table->text('address')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

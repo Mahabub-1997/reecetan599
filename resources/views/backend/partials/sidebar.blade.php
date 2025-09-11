@@ -105,6 +105,13 @@
                                 <p>Hero Images</p>
                             </a>
                         </li>
+                        <!-- Sub-menu: Hero sections -->
+                        <li class="nav-item">
+                            <a href="{{ route('hero-sections.index') }}" class="nav-link {{ request()->routeIs('hero-images.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Hero Sections</p>
+                            </a>
+                        </li>
                         <!-- Sub-menu: Contact Us -->
                         <li class="nav-item">
                             <a href="{{ route('contactus.index') }}" class="nav-link {{ request()->routeIs('contact-us.index') ? 'active' : '' }}">

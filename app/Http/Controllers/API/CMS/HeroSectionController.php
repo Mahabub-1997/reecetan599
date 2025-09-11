@@ -51,33 +51,41 @@ class HeroSectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // Update hero section
 //    public function update(Request $request, HeroSection $heroSection)
 //    {
+////        dd($request->all());
 //        $request->validate([
 //            'title' => 'sometimes|required|string|max:255',
 //            'description' => 'nullable|string',
 //            'image' => 'nullable|image|max:2048'
 //        ]);
+////        dd($request->toArray());
 //
-//        $data = $request->only(['title', 'description']); // only DB fields
-//
+//        $data = $request->only(['title', 'description', 'image']);
+////dd($data);
+//        // Handle image update
 //        if ($request->hasFile('image')) {
-//            // delete old image if exists
+//            // Delete old image if exists
 //            if ($heroSection->image && \Storage::disk('public')->exists($heroSection->image)) {
 //                \Storage::disk('public')->delete($heroSection->image);
 //            }
 //
+//
+//            // Store new image
 //            $data['image'] = $request->file('image')->store('hero_images', 'public');
 //        }
+////        dd($data);
 //
 //        $heroSection->update($data);
 //
 //        return response()->json([
-//            'message' => 'Hero section updated successfully',
+//            'message' => 'Hero Section updated successfully',
 //            'data' => $heroSection
 //        ], 200);
 //    }
+
+
+
     public function update(Request $request, HeroSection $heroSection)
     {
         $request->validate([
@@ -116,7 +124,6 @@ class HeroSectionController extends Controller
         ], 200);
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
@@ -142,4 +149,32 @@ class HeroSectionController extends Controller
 
         return $courses;
     }
+
+    public function updateHeroSection(Request $request, $id)
+    {
+        $heroSection = HeroSection::findOrFail($id);
+
+        $request->validate([
+            'title' => 'sometimes|required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        $data = $request->only(['title', 'description']);
+
+        if ($request->hasFile('image')) {
+            if ($heroSection->image && \Storage::disk('public')->exists($heroSection->image)) {
+                \Storage::disk('public')->delete($heroSection->image);
+            }
+            $data['image'] = $request->file('image')->store('hero_images', 'public');
+        }
+
+        $heroSection->update($data);
+
+        return response()->json([
+            'message' => 'Hero Section updated successfully',
+            'data' => $heroSection
+        ], 200);
+    }
+
 }

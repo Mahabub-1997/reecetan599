@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -16,10 +17,16 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->decimal('price', 10, 2)->nullable();
+
+            // Price column with default 0
+            $table->decimal('price', 10, 2)->default(0);
+
             $table->string('level')->nullable();
             $table->string('duration')->nullable();
             $table->string('language')->nullable();
+
+            // New course_type column
+            $table->enum('course_type', ['free', 'paid'])->default('free');
 
             // Foreign keys
             $table->foreignId('user_id');
@@ -30,6 +37,9 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        // Optional: if you need to update existing rows after migration
+        DB::table('online_courses')->whereNull('course_type')->update(['course_type' => 'free']);
     }
 
     /**

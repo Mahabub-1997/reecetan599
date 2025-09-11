@@ -5,18 +5,22 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
+                    <div class="col-md-12 align-items-center">
+
+                    </div><!-- /.col -->
                     <div class="col-sm-6">
-                        <h1 class="m-0">Contact Us List</h1>
-                    </div>
+                        <h1 class="m-0">Contact Us </h1>
+                    </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
 
                         </ol>
-                    </div>
-                </div>
-            </div>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </div>
 
+        {{-- Dashboard Info Boxes --}}
         <div class="container-fluid mb-4">
             <div class="row mt-4">
                 <div class="col-12">
@@ -73,6 +77,7 @@
             </div>
         </div>
 
+
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -82,13 +87,14 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <a href="{{ route('contactus.create') }}" class="btn bg-gradient-teal btn-sm">
-                                <i class="fa fa-plus text-light"></i> Add New Contact Us
+                                <i class="fa fa-plus text-light"></i> Add New Contact
                             </a>
                         </ol>
                     </div>
                 </div>
             </div>
         </div>
+
         {{-- Table --}}
         <div class="card">
             <div class="card-body">
@@ -107,9 +113,6 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Contact Number</th>
-                            <th>Image</th>
-                            <th>Address</th>
                             <th>Description</th>
                             <th class="text-center">Actions</th>
                         </tr>
@@ -120,15 +123,6 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $contact->name }}</td>
                                 <td>{{ $contact->email }}</td>
-                                <td>{{ $contact->contact_number ?? 'N/A' }}</td>
-                                <td>
-                                    @if($contact->image)
-                                        <img src="{{ asset('storage/'.$contact->image) }}" alt="{{ $contact->name }}" width="80" height="50">
-                                    @else
-                                        N/A
-                                    @endif
-                                </td>
-                                <td>{{ $contact->address ?? 'N/A' }}</td>
                                 <td>{{ Str::limit($contact->description, 50) }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('contactus.edit', $contact->id) }}" class="btn btn-info btn-sm">
@@ -145,7 +139,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8" class="text-center">No Contact Us records found</td>
+                                <td colspan="5" class="text-center">No Contact Us records found</td>
                             </tr>
                         @endforelse
                         </tbody>

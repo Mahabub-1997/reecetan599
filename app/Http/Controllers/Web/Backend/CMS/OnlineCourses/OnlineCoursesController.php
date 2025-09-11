@@ -40,11 +40,11 @@ class OnlineCoursesController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,png',
             'rating_id' => 'nullable|integer',
             'category_id' => 'required|exists:categories,id',
-            'course_type' => 'nullable|in:free,paid', // validate if passed from form
+            'course_type' => 'required|in:free,paid', // validate if passed from form
         ]);
 
         $data = $request->only([
-            'title', 'description', 'price', 'level', 'duration', 'language', 'rating_id', 'category_id'
+            'title', 'description', 'price', 'level', 'duration', 'language', 'rating_id', 'category_id', 'course_type'
         ]);
 
         // Handle Image Upload
@@ -59,14 +59,6 @@ class OnlineCoursesController extends Controller
         $data['user_id'] = Auth::id();       // logged-in user as course owner
         $data['created_by'] = Auth::id();    // creator
         $data['updated_by'] = Auth::id();    // fix for NOT NULL constraint
-
-        // Determine course type based on price
-        if (isset($data['price']) && $data['price'] > 0) {
-            $data['course_type'] = 'paid';
-        } else {
-            $data['course_type'] = 'free';
-            $data['price'] = 0; // ensure price is 0 for free courses
-        }
 
         OnlineCourse::create($data);
 
@@ -97,7 +89,7 @@ class OnlineCoursesController extends Controller
         ]);
 
         $data = $request->only([
-            'title', 'description', 'price', 'level', 'duration', 'language', 'rating_id', 'category_id'
+            'title', 'description', 'price', 'level', 'duration', 'language', 'rating_id', 'category_id','course_type'
         ]);
 
         // Handle Image Upload
@@ -116,12 +108,12 @@ class OnlineCoursesController extends Controller
         $data['updated_by'] = Auth::id();
 
         // Determine course type based on price
-        if (isset($data['price']) && $data['price'] > 0) {
-            $data['course_type'] = 'paid';
-        } else {
-            $data['course_type'] = 'free';
-            $data['price'] = 0; // ensure price is 0 for free courses
-        }
+//        if (isset($data['price']) && $data['price'] > 0) {
+//            $data['course_type'] = 'paid';
+//        } else {
+//            $data['course_type'] = 'free';
+//            $data['price'] = 0; // ensure price is 0 for free courses
+//        }
 
         $online_course->update($data);
 

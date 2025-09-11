@@ -61,5 +61,6 @@ Route::apiResource('subscriptions', SubscriptionController::class);
 Route::apiResource('contact-us', ContactUsController::class);
 Route::apiResource('hero-images', HeroImageController::class);
 Route::apiResource('hero-sections', HeroSectionController::class);
-Route::get('hero-sections/search/courses', [HeroSectionController::class, 'searchCourses']);
+Route::patch('update-hero-section/{id}', [HeroSectionController::class,'updateHeroSection']);
 
+Route::get('hero-sections/search/courses', [HeroSectionController::class, 'searchCourses']);

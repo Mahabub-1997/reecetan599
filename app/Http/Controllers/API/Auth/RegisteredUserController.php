@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API\Auth;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
@@ -18,10 +18,8 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        // Generate 6-digit OTP
         $otp = rand(100000, 999999);
 
-        // Create user with OTP
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -30,21 +28,22 @@ class RegisteredUserController extends Controller
             'otp_created_at' => now(),
         ]);
 
-        // Send OTP via email
-        Mail::raw("Your registration OTP is: $otp", function ($message) use ($user) {
-            $message->to($user->email)
-                ->subject('Registration OTP');
-        });
+        try {
+            Mail::raw("Your registration OTP is: $otp", function ($message) use ($user) {
+                $message->to($user->email)
+                    ->subject('Registration OTP');
+            });
+        } catch (\Exception $e) {
+            \Log::error('Failed to send OTP email: '.$e->getMessage());
+        }
 
-        // Create API token
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        // Return response
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
             'user' => $user,
-            'otp' => $otp // optional, remove in production
+            'otp' => $otp
         ]);
     }
 }
