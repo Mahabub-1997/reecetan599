@@ -87,5 +87,8 @@ class User extends Authenticatable
             ->withPivot('status', 'enrolled_at')
             ->withTimestamps();
     }
-
+    public function shareExperiences()
+    {
+        return $this->hasMany(ShareExperiance::class, 'user_id');
+    }
 }

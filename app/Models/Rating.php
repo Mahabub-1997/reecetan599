@@ -22,4 +22,11 @@ class Rating extends Model
     {
         return $this->hasOne(OnlineCourse::class, 'rating_id');
     }
+
+    // A rating can belong to many share experiences
+    public function shareExperiences()
+    {
+        return $this->hasMany(ShareExperiance::class, 'rating_id');
+    }
+
 }

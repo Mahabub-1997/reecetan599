@@ -35,6 +35,11 @@ class OnlineCourse extends Model
     {
         return $this->belongsTo(Rating::class, 'rating_id');
     }
+    // One course can have many shared experiences
+    public function shareExperiences()
+    {
+        return $this->hasMany(ShareExperiance::class, 'online_course_id');
+    }
 
     public function category()
     {
